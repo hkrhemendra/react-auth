@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.css";
+import Login from './pages/Login'
+import {
+  createBrowserRouter,
+  Outlet,
+} from 'react-router-dom';
+import Register from "./pages/Register";
+import VerifyOtp from "./pages/VerifyOtp";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Outlet/>
     </div>
   );
 }
 
-export default App;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <App/>,
+    children: [
+      {
+        path: '/',
+        element: <Login/>,
+      },
+      {
+        path: '/signup',
+        element: <Register/>,
+      },
+      {
+        path: '/verify-otp',
+        element: <VerifyOtp/>
+      }
+    ]
+  },
+]);
+
+// export default App;
+export { router}
